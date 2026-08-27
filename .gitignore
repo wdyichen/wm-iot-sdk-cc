@@ -1,0 +1,11 @@
+# 忽略 packages 中的大文件（请自行下载后放入）
+packages/*.tar.gz
+packages/*.tar.xz
+packages/*.sh.tar.gz
+packages/*.zip
+packages/cmake-*.sh
+packages/ninja-*.zip
+packages/ccache-*.tar.xz
+
+# 构建产物
+workspace/

@@ -1,0 +1,11 @@
+# 构建上下文忽略项
+.git
+.gitignore
+README.md
+*.md
+!packages/README.md
+docker-compose*.yml
+build.sh
+
+# 若 packages 目录为空则无法构建，但保留占位说明
+packages/.gitkeep

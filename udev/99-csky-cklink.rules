@@ -1,0 +1,4 @@
+# Hi-Link CK-Link Lite
+SUBSYSTEM=="usb", ATTR{idVendor}=="32bf", ATTR{idProduct}=="b210", MODE="0666", GROUP="plugdev"
+# Sipeed CK-Link
+SUBSYSTEM=="usb", ATTR{idVendor}=="42bf", ATTR{idProduct}=="b210", MODE="0666", GROUP="plugdev"

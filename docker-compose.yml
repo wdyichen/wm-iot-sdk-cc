@@ -1,0 +1,33 @@
+services:
+  wm-iot-sdk-cc:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        WM_UID: ${WM_UID:-1000}
+        WM_GID: ${WM_GID:-1000}
+    image: wm-iot-sdk-cc:latest
+    container_name: wm-iot-sdk-cc
+    stdin_open: true
+    tty: true
+    working_dir: /workspace
+    environment:
+      - WM_IOT_SDK_PATH=${WM_IOT_SDK_PATH:-/workspace/wm_iot_sdk}
+      - CCACHE_DIR=/home/user/.ccache
+    volumes:
+      # 挂载 WM IoT SDK 源码目录
+      - ${WM_IOT_SDK_HOST_PATH:-../wm_iot_sdk}:/workspace/wm_iot_sdk
+      # 持久化 ccache 缓存
+      - wm-ccache:/home/user/.ccache
+      # 挂载工作目录（可选，用于存放工程输出）
+      - ${WM_WORKSPACE:-./workspace}:/workspace/project
+    # 调试时需要 USB 设备访问（Linux 主机）
+    devices:
+      - /dev/bus/usb:/dev/bus/usb
+    privileged: false
+    group_add:
+      - plugdev
+    user: user
+
+volumes:
+  wm-ccache:
